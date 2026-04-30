@@ -1,21 +1,21 @@
 {
-    "name": "diegodv14/inventario-ventas",
-    "description": "Sistema web de inventario y ventas en PHP con Eloquent ORM",
-    "type": "project",
-    "require": {
-        "illuminate/database": "^11.0",
-        "illuminate/events": "^11.0",
-        "vlucas/phpdotenv": "^5.6"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/"
-        }
-    },
-    "scripts": {
-        "servidor": "php -S 0.0.0.0:8000 -t public"
-    },
-    "config": {
-        "sort-packages": true
+  "name": "diegodv14/inventario-ventas",
+  "description": "Sistema web de inventario y ventas en PHP con Eloquent ORM",
+  "type": "project",
+  "require": {
+    "illuminate/database": "^11.0",
+    "illuminate/events": "^11.0",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
     }
+  },
+  "scripts": {
+    "servidor": "php -S localhost:8000 -t public"
+  },
+  "config": {
+    "sort-packages": true
+  }
 }

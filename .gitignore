@@ -7,7 +7,6 @@ Thumbs.db
 /vendor/
 
 # Environment files
-.env
 .env.local
 
 # Logs and runtime
