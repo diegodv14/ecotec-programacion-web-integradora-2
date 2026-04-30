@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# PHP / Composer
+/vendor/
+
+# Environment files
+.env
+.env.local
+
+# Logs and runtime
+*.log
+/tmp/
+/logs/
+
+# Docker persistent data
+/docker/mysql/
