@@ -2,6 +2,8 @@
 
 Aplicación web en PHP para administrar productos y registrar ventas en una interfaz sencilla. El módulo de productos funciona con localStorage y el módulo de ventas guarda la información en MySQL usando Eloquent ORM.
 
+Para este proyecto se optó por trabajar la base de datos SQL con Docker Compose en lugar de XAMPP. La razón principal fue la facilidad para levantar MySQL con una configuración ya definida, sin depender de instalaciones adicionales ni ajustes manuales del entorno local. Además, Docker es una herramienta con la que ya existe familiaridad por experiencia laboral, así que resultó más natural utilizar un flujo de trabajo conocido y reproducible.
+
 ## Descripción general
 
 El sistema está dividido en dos áreas principales:
@@ -41,8 +43,6 @@ El sistema está dividido en dos áreas principales:
 - Docker disponible para levantar MySQL
 - Navegador moderno
 
-## Instalación y ejecución
-
 ### 1. Instalar dependencias PHP
 
 ```bash
@@ -57,15 +57,15 @@ docker compose up -d
 
 La base se publica en el puerto 3307 para evitar conflictos con otras instalaciones locales de MySQL.
 
+Se eligió este enfoque porque permite contar con MySQL listo para usar sin montar todo el stack con XAMPP. Para efectos de revisión y ejecución, esto simplifica bastante el arranque del proyecto.
+
 ### 3. Ejecutar el servidor local de PHP
 
-Puedes hacerlo directamente con PHP:
+El servidor local puede iniciarse directamente con PHP:
 
 ```bash
 php -S localhost:8000 -t public
 ```
-
-También se puede usar el script de Composer definido en [composer.json](composer.json):
 
 ```bash
 composer servidor
@@ -91,7 +91,9 @@ DB_PASSWORD=inventario_pass
 
 ## Base de datos
 
-El archivo [database/inventario.sql](database/inventario.sql) crea la tabla ventas y se monta automáticamente en el contenedor MySQL al iniciar el servicio.
+El archivo [database/inventario.sql](database/inventario.sql) crea la tabla ventas y se monta automáticamente en el contenedor MySQL al iniciar el servicio. De esta forma, la estructura SQL queda lista desde el primer arranque del contenedor.
+
+Se debe inicializar la base de datos antes que la aplicacion se levante para evitar errores de conexión o tablas faltantes. La conexion se maneja por variables de entorno en el archivo [.env](.env) y se utiliza Eloquent ORM para interactuar con la base de datos desde PHP.
 
 ## Capturas
 
@@ -108,3 +110,4 @@ El archivo [database/inventario.sql](database/inventario.sql) crea la tabla vent
 - El módulo de productos depende de localStorage del navegador.
 - El módulo de ventas toma los productos desde ese inventario local.
 - Si no existen productos cargados, el formulario de ventas no tendrá opciones disponibles.
+- El uso de Docker se limita a MySQL, mientras que la aplicación PHP se ejecuta de forma local para mantener el flujo simple durante la revisión.
