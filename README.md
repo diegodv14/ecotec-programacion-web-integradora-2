@@ -9,8 +9,6 @@ El sistema está dividido en dos áreas principales:
 - Inventario de productos con operaciones de crear, editar, eliminar y listar.
 - Registro de ventas con validación de stock y persistencia en base de datos.
 
-La idea es mantener un flujo simple: primero se cargan productos, luego esos productos se usan en el formulario de ventas y, cuando una venta se registra correctamente, el stock también se actualiza en el navegador.
-
 ## Funcionalidades
 
 - Crear productos.
@@ -67,7 +65,7 @@ Puedes hacerlo directamente con PHP:
 php -S localhost:8000 -t public
 ```
 
-También puedes usar el script de Composer definido en [composer.json](composer.json):
+También se puede usar el script de Composer definido en [composer.json](composer.json):
 
 ```bash
 composer servidor
