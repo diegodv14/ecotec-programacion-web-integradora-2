@@ -16,6 +16,7 @@
     "servidor": "php -S localhost:8000 -t public"
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "process-timeout": 0
   }
 }

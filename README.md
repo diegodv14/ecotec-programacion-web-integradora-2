@@ -1,35 +1,38 @@
 # Inventario + Ventas Simple
 
-Sistema web desarrollado en PHP para gestionar productos y registrar ventas, usando una arquitectura MVC ligera, localStorage para el inventario y Eloquent ORM para la persistencia de ventas en MySQL.
+Aplicación web en PHP para administrar productos y registrar ventas en una interfaz sencilla. El módulo de productos funciona con localStorage y el módulo de ventas guarda la información en MySQL usando Eloquent ORM.
 
-## Descripción
+## Descripción general
 
-El proyecto cubre dos módulos principales:
+El sistema está dividido en dos áreas principales:
 
-- Productos: CRUD completo en el navegador con validaciones obligatorias.
-- Ventas: registro de ventas conectado al inventario y persistencia en MySQL.
+- Inventario de productos con operaciones de crear, editar, eliminar y listar.
+- Registro de ventas con validación de stock y persistencia en base de datos.
 
-La aplicación combina frontend simple con JavaScript vanilla y backend PHP con Eloquent ORM, manteniendo una estructura clara por capas.
+La idea es mantener un flujo simple: primero se cargan productos, luego esos productos se usan en el formulario de ventas y, cuando una venta se registra correctamente, el stock también se actualiza en el navegador.
 
-## Funcionalidades implementadas
+## Funcionalidades
 
-- Crear, listar, editar y eliminar productos.
+- Crear productos.
+- Listar productos.
+- Editar productos.
+- Eliminar productos.
 - Validar nombre obligatorio.
 - Validar stock mayor o igual a 0.
 - Validar precio mayor a 0.
-- Mostrar métricas del inventario.
-- Registrar ventas con validaciones de stock.
-- Persistir ventas en MySQL.
-- Descontar stock del inventario tras registrar una venta.
-- Proteger el formulario de ventas con CSRF.
+- Mostrar métricas del inventario y alertas de stock.
+- Registrar ventas con validaciones del lado cliente y servidor.
+- Guardar ventas en MySQL con Eloquent ORM.
+- Descontar el stock del producto vendido en localStorage.
+- Proteger el formulario de ventas con token CSRF.
 
-## Tecnologías
+## Tecnologías usadas
 
 - PHP 8.3
 - Composer
 - Eloquent ORM
 - MySQL 8
-- Docker Compose para la base de datos
+- Docker Compose para MySQL
 - JavaScript vanilla
 - localStorage
 
@@ -48,6 +51,7 @@ ecotec-programacion-web-integradora-2/
 │   ├── assets/
 │   │   ├── css/
 │   │   └── js/
+│   ├── screenshots/
 │   └── index.php
 ├── composer.json
 ├── composer.lock
@@ -59,10 +63,10 @@ ecotec-programacion-web-integradora-2/
 
 - PHP 8.2 o superior
 - Composer
-- Docker Desktop o motor Docker disponible
+- Docker disponible para levantar MySQL
 - Navegador moderno
 
-## Instalación
+## Instalación y ejecución
 
 ### 1. Instalar dependencias PHP
 
@@ -70,29 +74,31 @@ ecotec-programacion-web-integradora-2/
 composer install
 ```
 
-### 2. Levantar solo MySQL con Docker Compose
+### 2. Levantar MySQL con Docker Compose
 
 ```bash
 docker compose up -d
 ```
 
-La base se expone en el puerto 3307 para evitar conflicto con MySQL local.
+La base se publica en el puerto 3307 para evitar conflictos con otras instalaciones locales de MySQL.
 
 ### 3. Ejecutar el servidor local de PHP
 
-Puedes hacerlo directamente con Composer:
-
-```bash
-composer servidor
-```
-
-O con PHP:
+Puedes hacerlo directamente con PHP:
 
 ```bash
 php -S localhost:8000 -t public
 ```
 
-### 4. Abrir el sistema en el navegador
+También puedes usar el script de Composer definido en [composer.json](composer.json):
+
+```bash
+composer servidor
+```
+
+Si usas Composer para mantener el servidor levantado por mucho tiempo, puede ser mejor ejecutar PHP directamente para evitar el timeout por defecto de Composer.
+
+### 4. Abrir la aplicación
 
 ```text
 http://localhost:8000
@@ -100,9 +106,7 @@ http://localhost:8000
 
 ## Configuración de base de datos
 
-El proyecto versiona el archivo [.env](.env) para simplificar esta entrega académica.
-
-Parámetros actuales:
+La conexión actual usa estos valores:
 
 ```text
 DB_HOST=127.0.0.1
@@ -112,22 +116,27 @@ DB_USERNAME=inventario_user
 DB_PASSWORD=inventario_pass
 ```
 
-## Script SQL
+## Base de datos
 
-El archivo [database/inventario.sql](database/inventario.sql) crea la tabla de ventas y se monta automáticamente en el contenedor MySQL.
+El archivo [database/inventario.sql](database/inventario.sql) crea la tabla ventas y se monta automáticamente en el contenedor MySQL al iniciar el servicio.
 
-## Usuario de prueba
+## Capturas
 
-No aplica. El sistema no requiere autenticación.
+### Vista del módulo de ventas
 
-## Capturas sugeridas para la entrega
+<img src="public/screenshots/Captura%20de%20pantalla%202026-04-30%20191823.png" alt="Módulo de ventas" width="900">
 
-- Pantalla de inicio
-- Módulo de productos con registros creados
-- Módulo de ventas con historial visible
-- Contenedor MySQL levantado
+### Registro guardado en la base de datos
 
-## Commits actuales del trabajo
+<img src="public/screenshots/Captura%20de%20pantalla%202026-04-30%20191649.png" alt="Registro de ventas en MySQL" width="900">
+
+## Notas de uso
+
+- El módulo de productos depende de localStorage del navegador.
+- El módulo de ventas toma los productos desde ese inventario local.
+- Si no existen productos cargados, el formulario de ventas no tendrá opciones disponibles.
+
+## Historial de commits
 
 1. initial: crear base del proyecto con Docker y Eloquent ORM
 2. feat: agregar estructura MVC y navegación base
@@ -135,7 +144,4 @@ No aplica. El sistema no requiere autenticación.
 4. chore: restaurar mysql en docker compose
 5. chore: trackear env y ajustar arranque local
 6. feat: implementar productos y ventas funcionales
-
-## Nota académica
-
-Este proyecto fue adaptado para una entrega universitaria, priorizando claridad, facilidad de ejecución local y separación básica de responsabilidades.
+7. feat: implementar estilos de css
