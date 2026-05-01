@@ -74,4 +74,4 @@
     </article>
 </section>
 
-<script src="<?= htmlspecialchars(app_url('public/assets/js/productos.js'), ENT_QUOTES, 'UTF-8') ?>"></script>
+<script src="<?= htmlspecialchars(app_url('assets/js/productos.js'), ENT_QUOTES, 'UTF-8') ?>"></script>

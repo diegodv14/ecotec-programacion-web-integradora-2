@@ -84,4 +84,4 @@
 <script>
     window.saleSyncPayload = <?= json_encode($saleSync ?? null, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
 </script>
-<script src="<?= htmlspecialchars(app_url('public/assets/js/ventas.js'), ENT_QUOTES, 'UTF-8') ?>"></script>
+<script src="<?= htmlspecialchars(app_url('assets/js/ventas.js'), ENT_QUOTES, 'UTF-8') ?>"></script>

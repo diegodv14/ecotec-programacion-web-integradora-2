@@ -12,10 +12,18 @@
 <section class="cards-grid">
     <article class="card">
         <h2>Productos</h2>
-        <p>La siguiente iteracion agregara formularios, validaciones y persistencia del modulo de inventario.</p>
+        <p>CRUD completo en el navegador con localStorage, validaciones obligatorias y métricas de inventario.</p>
     </article>
     <article class="card">
         <h2>Ventas</h2>
-        <p>La base de navegacion ya separa el modulo que luego usara Eloquent para registrar ventas.</p>
+        <p>Formulario conectado al inventario, validaciones de stock y persistencia en MySQL mediante Eloquent ORM.</p>
+    </article>
+    <article class="card">
+        <h2>Base de datos</h2>
+        <p>Docker Compose levanta solo MySQL y el script SQL inicializa la tabla de ventas para el proyecto.</p>
+    </article>
+    <article class="card">
+        <h2>Entorno local</h2>
+        <p>El proyecto se puede ejecutar con PHP y Composer localmente usando el script servidor definido en Composer.</p>
     </article>
 </section>
